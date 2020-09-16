@@ -195,14 +195,15 @@ void ScrollControllerSupporter::MoveVScrollToCurrent(){
 				}
 			}
 		}
-		else if (textMetric.GetY(this->notePadForm->notePad->GetCurrent()) + tm.tmHeight-scrollController->GetVPosition()<=tm.tmHeight) {
+		else if (this->notePadForm->notePad->GetCurrent() != this->notePadForm->notePad->GetLength()-1 &&
+			     textMetric.GetY(this->notePadForm->notePad->GetCurrent()) + tm.tmHeight-scrollController->GetVPosition()<=tm.tmHeight) {
 
 			scrollController->SetVPos(textMetric.GetY(this->notePadForm->notePad->GetCurrent()));
 			
 		}
 		else {
-			if (this->notePadForm->GetCy() + scrollController->GetVPosition() - textMetric.GetY(this->notePadForm->notePad->GetLength()) >tm.tmHeight + 5) {
-				while (this->notePadForm->GetCy() + scrollController->GetVPosition() - textMetric.GetY(this->notePadForm->notePad->GetLength()) >tm.tmHeight + 5) {
+			if (this->notePadForm->GetCy() + scrollController->GetVPosition() - textMetric.GetY(this->notePadForm->notePad->GetLength()) >=tm.tmHeight + 5) {
+				while (this->notePadForm->GetCy() + scrollController->GetVPosition() - textMetric.GetY(this->notePadForm->notePad->GetLength()) >=tm.tmHeight + 5) {
 					scrollController->MoveVScrPrevious();
 				}
 			}

@@ -31,6 +31,8 @@
 #include"PageConfigureCommand.h"
 #include"PageConfigureCommand.h"
 #include"SelectAllCommand.h"
+#include"FindReplaceSupervisor.h"
+#include"Selector.h"
 #include <afxwin.h>
 
 CommandFactory::CommandFactory(NotePadForm* notePadForm, NotePadFormControlWnd* notePadFormControlWnd) {
@@ -138,6 +140,21 @@ Command* CommandFactory::MakeCommand(UINT nID) {
 		command = new HelpCommand(this->notePadForm);
 		this->notePadForm->GetNotePadFormControlWnd()->SetNoNeedToScroll(true);
 	}
+	if (dynamic_cast<NewFileMakeCommand*>(command) || dynamic_cast<LoadCommand*>(command) ) {
 
+		if (this->notePadForm->GetIsSelected() == true) {
+			this->notePadForm->SetIsSelected(false);
+			if (this->notePadForm->GetSelector() != 0) {
+				delete this->notePadForm->GetSelector();
+			}
+			Selector* selector = new Selector(this->notePadForm);
+			this->notePadForm->SetSelector(selector);
+			if (((NotePadFormControlWnd*)(this->notePadForm->GetParent()))->GetContentsFinder() != 0) {
+				FindReplaceSupervisor findReplaceSupervisor(((NotePadFormControlWnd*)(this->notePadForm->GetParent())), this->notePadForm,
+					((NotePadFormControlWnd*)(this->notePadForm->GetParent()))->GetContentsFinder(), 0, 0);
+				findReplaceSupervisor.DeleteMatchIndexCollector();
+			}
+		}
+	}
 	return command;
 }
