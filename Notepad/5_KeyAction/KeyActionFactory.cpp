@@ -261,8 +261,9 @@ KeyAction* KeyActionFactory::MakeKey(UINT nChar) {
 			dynamic_cast<CtrlHomeKey*>(keyAction) || dynamic_cast<HomeKey*>(keyAction) ||
 			dynamic_cast<CtrlEndKey*>(keyAction) || dynamic_cast<EndKey*>(keyAction) ||
 			dynamic_cast<CtrlZKey*>(keyAction) || dynamic_cast<CtrlYKey*>(keyAction) || 
-			dynamic_cast<UpArrowKey*>(keyAction) ||dynamic_cast<DownArrowKey*>(keyAction) ||
-			dynamic_cast<PageUpKey*>(keyAction) || dynamic_cast<PageDownKey*>(keyAction)) {
+			dynamic_cast<CtrlA*>(keyAction)|| dynamic_cast<UpArrowKey*>(keyAction) ||
+			dynamic_cast<DownArrowKey*>(keyAction) || dynamic_cast<PageUpKey*>(keyAction) || 
+			dynamic_cast<PageDownKey*>(keyAction)) {
 
 			if (this->notePadForm->GetIsSelected() == true) {
 				this->notePadForm->SetIsSelected(false);

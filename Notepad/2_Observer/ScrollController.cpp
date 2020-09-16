@@ -272,7 +272,7 @@ void ScrollController::RemoveVScroll() {
 
 void ScrollController::Update(Subject* theChangedSubject) {
 	
-	if (this->notePadForm == theChangedSubject &&this->notePadForm->GetNotePadFormControlWnd()->GetNoNeedToScroll()==false) {
+	if (this->notePadForm == theChangedSubject && this->notePadForm->GetNotePadFormControlWnd()->GetNoNeedToScroll()==false) {
 		ScrollControllerSupporter scrollControllerSupporter(this->notePadForm, this);
 		TextMetric textMetric(this->notePadForm);
 		NotePadMetric notePadMetric(this->notePadForm);
@@ -281,6 +281,7 @@ void ScrollController::Update(Subject* theChangedSubject) {
 		tm = font.CalculateFontMetric();
 		
 		if (this->notePadForm->GetIsAutoLineBreak() == false) {
+
 			if (this->notePadForm->GetIsOnSizing() == true || this->notePadForm->GetIsFontSizing()==true) {
 				if (notePadMetric.GetLongestX() + tm.tmAveCharWidth / 4 > this->scroll->GetScrollWidth() - tm.tmAveCharWidth / 2) {
 					this->SetHScroll();

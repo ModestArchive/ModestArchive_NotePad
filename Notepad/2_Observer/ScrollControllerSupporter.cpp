@@ -185,6 +185,7 @@ void ScrollControllerSupporter::MoveVScrollToCurrent(){
 	bool isVScrollOn = scrollController->GetIsVScrollOn();
 	if (isVScrollOn == true) {
 		if (textMetric.GetY(this->notePadForm->notePad->GetCurrent()) + tm.tmHeight+5 > this->notePadForm->GetCy() + scrollController->GetVPosition()) {
+
 			while (textMetric.GetY(this->notePadForm->notePad->GetCurrent()) + tm.tmHeight + 5> this->notePadForm->GetCy() + scrollController->GetVPosition()) {
 				if (this->notePadForm->notePad->GetCurrent() == this->notePadForm->notePad->GetLength() - 1) {
 					scrollController->SetVPos(this->notePadForm->GetScrollLimit(SB_VERT));
@@ -194,17 +195,18 @@ void ScrollControllerSupporter::MoveVScrollToCurrent(){
 				}
 			}
 		}
-		else if (textMetric.GetY(this->notePadForm->notePad->GetCurrent()) + tm.tmHeight -scrollController->GetVPosition()<=tm.tmHeight) {
+		else if (textMetric.GetY(this->notePadForm->notePad->GetCurrent()) + tm.tmHeight-scrollController->GetVPosition()<=tm.tmHeight) {
 
 			scrollController->SetVPos(textMetric.GetY(this->notePadForm->notePad->GetCurrent()));
 			
 		}
 		else {
 			if (this->notePadForm->GetCy() + scrollController->GetVPosition() - textMetric.GetY(this->notePadForm->notePad->GetLength()) >tm.tmHeight + 5) {
-				scrollController->MoveVScrPrevious();
+				while (this->notePadForm->GetCy() + scrollController->GetVPosition() - textMetric.GetY(this->notePadForm->notePad->GetLength()) >tm.tmHeight + 5) {
+					scrollController->MoveVScrPrevious();
+				}
 			}
 		}
 		scrollController->SetVScroll();
 	}
-
 }

@@ -334,7 +334,8 @@ void  NotePadForm::OnLButtonDown(UINT nFlags, CPoint point) {
 
 
 void NotePadForm::OnMouseMove(UINT nFlags, CPoint point) {
-	if (nFlags==MK_LBUTTON) {
+	if (nFlags & MK_LBUTTON) {
+		
 		SetCapture();
 		this->isMouseSelecting = true;
 		MouseMove mouseMove(this);

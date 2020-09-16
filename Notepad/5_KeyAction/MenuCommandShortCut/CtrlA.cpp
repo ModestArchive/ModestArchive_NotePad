@@ -10,6 +10,7 @@ CtrlA::~CtrlA() {
 }
 
 void CtrlA::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
+	
 	SelectAllCommand selectAllCommand(this->notePadForm->GetNotePadFormControlWnd(), this->notePadForm);
 	selectAllCommand.Execute();
 }
